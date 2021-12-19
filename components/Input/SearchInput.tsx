@@ -1,14 +1,10 @@
 import { Autocomplete, TextField } from '@mui/material'
 import React from 'react'
-import useSWR from 'swr'
-import { fetcher } from '@/utils/fetcher'
-import { BASE_URL } from '@/constants'
-import { PokemonList, PokemonOverviewData } from '@/types/pokemon'
+import getList from '@/hooks/getList'
+import { PokemonOverviewData } from '@/types/pokemon'
 
 const SearchInput = function ({ handleSearch }: {handleSearch: (name: string) => void}) {
-  let list: PokemonOverviewData[] = []
-  const { data } = useSWR<PokemonList>(`${BASE_URL}/pokemon?limit=1200`, fetcher)
-  if (data) list = data.results
+  const { list } = getList()
 
   return (
     <div className="relative my-2">
