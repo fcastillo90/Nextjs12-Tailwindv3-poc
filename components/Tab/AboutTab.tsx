@@ -1,10 +1,12 @@
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable react/prop-types */
-import React from 'react'
+import React, { useContext } from 'react'
 import { Grid, Typography } from '@mui/material'
-import { Pokemon } from '@/types/pokemon'
+import { PokemonContext } from '@/hooks/appContext'
 
-const AboutTab = function ({ data }: {data: Pokemon}) {
+const AboutTab = function () {
+  const { pokemonData } = useContext(PokemonContext)
+
   return (
     <>
       <Grid
@@ -19,7 +21,7 @@ const AboutTab = function ({ data }: {data: Pokemon}) {
             <Typography variant="body1" className="text-slate-500">Species</Typography>
           </Grid>
           <Grid item xs>
-            {data.species.name}
+            {pokemonData?.species.name}
           </Grid>
         </Grid>
         <Grid container item>
@@ -27,7 +29,7 @@ const AboutTab = function ({ data }: {data: Pokemon}) {
             <Typography variant="body1" className="text-slate-500">Height</Typography>
           </Grid>
           <Grid item xs>
-            {data.height}
+            {pokemonData?.height}
             "
           </Grid>
         </Grid>
@@ -36,7 +38,7 @@ const AboutTab = function ({ data }: {data: Pokemon}) {
             <Typography variant="body1" className="text-slate-500">Weight</Typography>
           </Grid>
           <Grid item xs>
-            {data.weight}
+            {pokemonData?.weight}
             {' '}
             lb
           </Grid>
@@ -46,7 +48,7 @@ const AboutTab = function ({ data }: {data: Pokemon}) {
             <Typography variant="body1" className="text-slate-500">Abilities</Typography>
           </Grid>
           <Grid item xs>
-            {data.abilities.map((ability) => `${ability.ability.name} `)}
+            {pokemonData?.abilities.map((ability) => `${ability.ability.name} `)}
           </Grid>
         </Grid>
       </Grid>

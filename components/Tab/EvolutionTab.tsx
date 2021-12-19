@@ -1,33 +1,25 @@
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable react/prop-types */
-import React from 'react'
+import React, { useContext } from 'react'
 import useSWR from 'swr'
-import { Grid, Typography } from '@mui/material'
+import { Typography } from '@mui/material'
 import { Evolution } from '@/types/pokemon'
 import { fetcher } from '@/utils/fetcher'
 import { BASE_URL } from '@/constants'
+import { PokemonContext } from '@/hooks/appContext'
 
-const EvolutionTab = function ({ id }: {id: number}) {
-  const pokemonEvolution: Evolution = {
-    baby_trigger_item: null,
-    chain: {
-      evolution_details: [],
-      evolves_to: [],
-      is_baby: false,
-      species: {
-        name: 'bulbasaur',
-        url: 'https://pokeapi.co/api/v2/pokemon-species/1/',
-      },
-    },
-    id: 1,
-  }
-  const { data } = useSWR<Evolution>(`${BASE_URL}/evolution-chain/${id}`, fetcher)
-  console.log(data)
+const EvolutionTab = function () {
+  const { pokemonData, handleSearch } = useContext(PokemonContext)
+
+  const { data } = useSWR<Evolution>(`${BASE_URL}/evolution-chain/${pokemonData.id}`, fetcher)
 
   return (
     <>
+      <Typography onClick={() => handleSearch(data?.chain.evolves_to[0].species.name as string)}>
+        {data?.chain.evolves_to[0].species.name}
+      </Typography>
     </>
   )
 }
 
-export default EvolutionTab
+export default React.memo(EvolutionTab)

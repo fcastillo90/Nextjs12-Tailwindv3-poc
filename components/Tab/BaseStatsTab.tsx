@@ -1,12 +1,13 @@
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable react/prop-types */
-import React from 'react'
+import React, { useContext } from 'react'
 import {
   Box, Grid, LinearProgress, Typography,
 } from '@mui/material'
-import { Stat } from '@/types/pokemon'
+import { PokemonContext } from '@/hooks/appContext'
 
-const BaseStatsTab = function ({ stats }: {stats: Stat[]}) {
+const BaseStatsTab = function () {
+  const { pokemonData } = useContext(PokemonContext)
   const getColor = (value: number): 'inherit' | 'error' | 'primary' | 'secondary' | 'info' | 'success' | 'warning' | undefined => {
     if (value >= 70) return 'success'
     if (value <= 35) return 'error'
@@ -21,8 +22,8 @@ const BaseStatsTab = function ({ stats }: {stats: Stat[]}) {
         alignItems="center"
         spacing={2}
       >
-        {stats.map((stat) => (
-          <Grid container item>
+        {pokemonData.stats.map((stat) => (
+          <Grid container item key={stat.stat.name}>
             <Grid item xs={2}>
               <Typography variant="body1" className="text-slate-500">{stat.stat.name}</Typography>
             </Grid>

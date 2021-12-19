@@ -1,25 +1,27 @@
+/* eslint-disable max-len */
 /* eslint-disable react/prop-types */
-import React from 'react'
+import React, { useContext } from 'react'
 import Image from 'next/image'
-import { Pokemon } from '@/types/pokemon'
 import LoaderPokeball from '../Loader/LoaderPokeball'
 import NFSearchPokemon from '../NotFound/NFSearchPokemon'
 import PokemonCharateristics from '../Tab/PokemonCharateristics'
+import { PokemonContext } from '@/hooks/appContext'
 
-const CardPokemonData = function ({ data }: {data: Pokemon}) {
+const CardPokemonData = function () {
+  const { pokemonData } = useContext(PokemonContext)
   // if (error) {
   //   return <NFSearchPokemon />
   // }
-  if (!data) return <LoaderPokeball />
+  if (!pokemonData) return <LoaderPokeball />
 
   return (
     <>
-      <h1 className="text-3xl text-center capitalize font-semibold">{data.name}</h1>
-      <h3 className="text-center">{data.id}</h3>
+      <h1 className="text-3xl text-center capitalize font-semibold">{pokemonData.name}</h1>
+      <h3 className="text-center">{pokemonData.id}</h3>
       <div className="w-80 relative h-80 mx-auto -m-8">
-        <Image src={data.sprites.front_default} alt={data.name} className="" layout="fill" />
+        <Image src={pokemonData.sprites.front_default} alt={pokemonData.name} className="" layout="fill" />
       </div>
-      <PokemonCharateristics data={data} />
+      <PokemonCharateristics />
     </>
   )
 }

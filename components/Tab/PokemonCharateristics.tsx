@@ -1,10 +1,7 @@
-/* eslint-disable react/no-unescaped-entities */
-/* eslint-disable react/prop-types */
 import React from 'react'
 import {
   Tabs, Tab, Container,
 } from '@mui/material'
-import { Pokemon } from '@/types/pokemon'
 import AboutTab from './AboutTab'
 import EvolutionTab from './EvolutionTab'
 import BaseStatsTab from './BaseStatsTab'
@@ -27,7 +24,7 @@ const TabPanel = function (props: any) {
   )
 }
 
-const PokemonCharateristics = function ({ data }: {data: Pokemon}) {
+const PokemonCharateristics = function () {
   const [value, setValue] = React.useState(0)
 
   return (
@@ -41,13 +38,13 @@ const PokemonCharateristics = function ({ data }: {data: Pokemon}) {
         </Tabs>
         <div className="mt-10">
           <TabPanel value={value} index={0}>
-            <AboutTab data={data} />
+            <AboutTab />
           </TabPanel>
           <TabPanel value={value} index={1}>
-            <EvolutionTab id={data.id} />
+            <EvolutionTab />
           </TabPanel>
           <TabPanel value={value} index={2}>
-            <BaseStatsTab stats={data.stats} />
+            <BaseStatsTab />
           </TabPanel>
           <TabPanel value={value} index={3}>
             Types
