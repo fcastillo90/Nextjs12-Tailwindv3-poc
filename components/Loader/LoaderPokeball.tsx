@@ -1,6 +1,5 @@
 import React from 'react'
 import Image from 'next/image'
-import SkeletonPokemonData from '@/components/Skeleton/SkeletonPokemonData'
 
 const LoaderPokeball = function () {
   return (
@@ -9,7 +8,6 @@ const LoaderPokeball = function () {
       <div className="animate-bounce w-32 relative h-32 mx-auto">
         <Image src="/pokeball.svg" alt="Vercel Logo" layout="fill" />
       </div>
-      <SkeletonPokemonData />
     </>
   )
 }

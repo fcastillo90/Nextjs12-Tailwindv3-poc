@@ -2,7 +2,7 @@ import { PokemonTypes } from '@/types/pokemon'
 
 export const getTypeColors: Record<PokemonTypes, any> = {
   normal: {
-    bg: 'bg-ay-500', text: 'text-black', from: 'from-ay-500', via: 'via-ay-500',
+    bg: 'bg-slate-500', text: 'text-black', from: 'from-slate-500', via: 'via-slate-500',
   },
   fighting: {
     bg: 'bg-neutral-500', text: 'text-black', from: 'from-neutral-500', via: 'via-neutral-500',

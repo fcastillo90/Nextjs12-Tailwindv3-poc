@@ -1,3 +1,4 @@
+/* eslint-disable no-shadow */
 /* eslint-disable no-use-before-define */
 export enum PokemonTypes {
   NORMAL = 'normal',
@@ -99,19 +100,19 @@ export interface GenerationIii {
 }
 
 export interface Home {
-  frontDefault: string;
-  frontFemale: null;
-  frontShiny: string;
-  frontShinyFemale: null;
+  front_default: string;
+  front_female: null;
+  front_shiny: string;
+  front_shinyFemale: null;
 }
 export interface DreamWorld {
-  frontDefault: string;
-  frontFemale: null;
+  front_default: string;
+  front_female: null;
 }
 
 export interface GenerationVii {
   icons: DreamWorld;
-  ultraSunUltraMoon: Home;
+  ultra_sun_ultra_moon: Home;
 }
 
 export interface GenerationViii {
@@ -119,24 +120,24 @@ export interface GenerationViii {
 }
 
 export interface OfficialArtwork {
-  frontDefault: string;
+  front_default: string;
 }
 
 export interface Other {
-  dreamWorld: DreamWorld;
+  dream_world: DreamWorld;
   home: Home;
-  officialArtwork: OfficialArtwork;
+  official_artwork: OfficialArtwork;
 }
 
 export interface Sprites {
-  backDefault: string;
-  backFemale: null;
-  backShiny: string;
-  backShinyFemale: null;
+  back_default: string;
+  back_female: null;
+  back_shiny: string;
+  back_shiny_female: null;
   front_default: string;
-  frontFemale: null;
-  frontShiny: string;
-  frontShinyFemale: null;
+  front_female: null;
+  front_shiny: string;
+  front_shiny_female: null;
   other?: Other;
   versions?: Versions;
   animated?: Sprites;
@@ -164,7 +165,7 @@ export interface Versions {
 }
 
 export interface Stat {
-  baseStat: number;
+  base_stat: number;
   effort: number;
   stat: Species;
 }
@@ -175,21 +176,66 @@ export interface Type {
 }
 export interface Pokemon {
   abilities: Ability[];
-  baseExperience: number;
+  base_experience: number;
   forms: Species[];
-  gameIndices: GameIndex[];
+  game_indices: GameIndex[];
   height: number;
-  heldItems: any[];
+  held_items: any[];
   id: number;
-  isDefault: boolean;
-  locationAreaEncounters: string;
+  is_default: boolean;
+  location_area_encounters: string;
   moves: Move[];
   name: string;
   order: number;
-  pastTypes: any[];
+  past_types: any[];
   species: Species;
   sprites: Sprites;
   stats: Stat[];
   types: Type[];
   weight: number;
+}
+
+export interface PokemonOverviewData {
+  name: string;
+  url: string;
+}
+
+export interface PokemonList {
+  count: number;
+  next: string;
+  previous: string;
+  results: PokemonOverviewData[]
+}
+export interface Evolution {
+  baby_trigger_item: null;
+  chain: Chain;
+  id: number;
+}
+
+export interface Chain {
+  evolution_details: EvolutionDetail[];
+  evolves_to: Chain[];
+  is_baby: boolean;
+  species: PokemonOverviewData;
+}
+
+export interface EvolutionDetail {
+  gender: null;
+  held_item: null;
+  item: null;
+  known_move: null;
+  known_move_type: null;
+  location: null;
+  min_affection: null;
+  min_beauty: null;
+  min_happiness: null;
+  min_level: number;
+  needs_overworld_rain: boolean;
+  party_species: null;
+  party_type: null;
+  relative_physical_stats: null;
+  time_of_day: string;
+  trade_species: null;
+  trigger: PokemonOverviewData;
+  turn_upside_down: boolean;
 }
